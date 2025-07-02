@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Country } from '../models/countries.models';
 
 
@@ -13,27 +13,90 @@ import { Country } from '../models/countries.models';
 export class CountryService {
   constructor(private http: HttpClient) {}
 
-  getCountries(): Observable<Country[]> {
-    return this.http.get<Country[]>(`https://restcountries.com/v3.1/all?fields=name,flags`).pipe(
-      catchError((error) => {
-        return throwError(() => error);
-      })
+  getAllCountries(): Observable<Country[]> {
+    return this.http.get<Country[]>(`https://restcountries.com/v3.1/all?fields=name,flags,cca3,capital,region,population,borders,subregion,tld,currencies,languages`).pipe(
+      map((apiCountries) =>
+        apiCountries.map((apiCountry) => ({
+          name: {
+            common: apiCountry.name.common,
+            official: apiCountry.name.official,
+            nativeName: apiCountry.name.nativeName,
+          },
+          cca3: apiCountry.cca3,
+          capital: apiCountry.capital || [],
+          region: apiCountry.region,
+          population: apiCountry.population,
+          flags: apiCountry.flags,
+          borders: apiCountry.borders || [],
+          subregion: apiCountry.subregion,
+          tld: apiCountry.tld,
+          currencies: apiCountry.currencies,
+          languages: apiCountry.languages,
+        }))
+      ),
+      catchError(this.errorHandler)
     );
   }
 
-  getCountry(code: string): Observable<Country[]> {
+  getCountryDetailsByCode(code: string){
     return this.http.get<Country[]>(`https://restcountries.com/v3.1/alpha/${code}`).pipe(
+      map((apiCountries) => {
+        const apiCountry = apiCountries[0];
+        return {
+          name: {
+            common: apiCountry.name.common,
+            official: apiCountry.name.official,
+            nativeName: apiCountry.name.nativeName,
+          },
+          cca3: apiCountry.cca3,
+          capital: apiCountry.capital || [],
+          region: apiCountry.region,
+          population: apiCountry.population,
+          flags: apiCountry.flags,
+          borders: apiCountry.borders || [],
+          subregion: apiCountry.subregion,
+          tld: apiCountry.tld,
+          currencies: apiCountry.currencies,
+          languages: apiCountry.languages,
+        };
+      }),
       catchError((error) => {
         return throwError(() => error);
       })
     );
   }
 
-  getCountryList(list: string[]): Observable<Country[]> {
-    return this.http.get<Country[]>(`https://restcountries.com/v3.1/alpha?codes=${list.join(',')}`).pipe(
+  getCountriesByCodes(list: string[]): Observable<Country[]> {
+    return this.http.get<Country[]>(`https://restcountries.com/v3.1/alpha?codes=${list.join(',')}&fields=name,flags,cca3,capital,region,population,borders,subregion,tld,currencies,languages`).pipe(
+      map((apiCountries) =>
+          apiCountries.map((apiCountry) => ({
+            name: {
+              common: apiCountry.name.common,
+              official: apiCountry.name.official,
+              nativeName: apiCountry.name.nativeName,
+            },
+            cca3: apiCountry.cca3,
+            capital: apiCountry.capital || [],
+            region: apiCountry.region,
+            population: apiCountry.population,
+            flags: apiCountry.flags,
+            borders: apiCountry.borders || [],
+            subregion: apiCountry.subregion,
+            tld: apiCountry.tld,
+            currencies: apiCountry.currencies,
+            languages: apiCountry.languages,
+          }))
+        ),
       catchError((error) => {
         return throwError(() => error);
       })
+    );
+  }
+
+  private errorHandler(error: HttpErrorResponse){
+    console.error('API Error:', error.message);
+    return throwError(
+      () => new Error('Failed to fetch country data. Please try again later.')
     );
   }
 }
