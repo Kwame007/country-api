@@ -1,0 +1,8 @@
+<div class="countries-list">
+  <ng-container *ngIf="countries.length; else noCountries">
+    <app-country-card *ngFor="let country of countries" [country]="country"></app-country-card>
+  </ng-container>
+  <ng-template #noCountries>
+    <div class="empty-message">No countries found.</div>
+  </ng-template>
+</div>

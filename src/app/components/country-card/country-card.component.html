@@ -1,0 +1,11 @@
+<div class="country-card">
+  <img class="country-flag" [src]="country.flags.png" [alt]="country.name.common + ' flag'" />
+  <div class="country-info">
+    <h2 class="country-name">{{ country.name.common }}</h2>
+    <div class="country-details">
+      <div><strong>Population:</strong> {{ country['population'] }}</div>
+      <div><strong>Region:</strong> {{ country['region'] }}</div>
+      <div><strong>Capital:</strong> {{ country['capital']?.[0] || 'N/A' }}</div>
+    </div>
+  </div>
+</div>
