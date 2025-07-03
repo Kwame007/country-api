@@ -9,14 +9,13 @@ export class CountryEffects {
   private actions$ = inject(Actions);
   private countryApi = inject(CountryService);
 
-  //  Load all countries
   loadCountries$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CountryActions.CountryLoadAll),
       mergeMap(() =>
         this.countryApi.getAllCountries().pipe(
-          map((countries) =>
-            CountryActions.CountryLoadAllSuccess({ countries })
+          map((countriesList) =>
+            CountryActions.CountryLoadAllSuccess({ countriesList })
           ),
           catchError((error) =>
             of(CountryActions.CountryLoadAllFailure({ error: error.message }))
@@ -26,14 +25,13 @@ export class CountryEffects {
     )
   );
 
-  // Load country by code
   loadCountryByCode$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CountryActions.CountryLoadByCode),
       mergeMap(({ code }) =>
         this.countryApi.getCountryDetailsByCode(code).pipe(
-          map((country) =>
-            CountryActions.CountryLoadByCodeSuccess({ country })
+          map((activeCountry) =>
+            CountryActions.CountryLoadByCodeSuccess({ activeCountry })
           ),
           catchError((error) =>
             of(

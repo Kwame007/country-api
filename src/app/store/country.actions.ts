@@ -7,7 +7,7 @@ export const CountryLoadAll = createAction('[Country] Load All');
 // Action dispatched when all countries are successfully loaded
 export const CountryLoadAllSuccess = createAction(
   '[Country] Load All Success',
-  props<{ countries: Country[] }>()
+  props<{ countriesList: Country[] }>()
 );
 
 // Action dispatched when there is an error loading all countries
@@ -25,7 +25,7 @@ export const CountryLoadByCode = createAction(
 // Action dispatched when a country is successfully loaded by its code
 export const CountryLoadByCodeSuccess = createAction(
   '[Country] Load By Code Success',
-  props<{ country: Country }>()
+  props<{ activeCountry: Country }>()
 );
 
 // Action dispatched when there is an error loading a country by its code
@@ -43,17 +43,17 @@ export const CountrySelect = createAction(
 // Action to set the search query for countries
 export const CountrySetSearchQuery = createAction(
   '[Country] Set Search Query',
-  props<{ query: string }>()
+  props<{ countrySearchQuery: string }>()
 );
 
 // Action to set the filter region for countries
 export const CountrySetFilterRegion = createAction(
   '[Country] Set Filter Region',
-  props<{ region: string }>()
+  props<{ selectedRegion: string }>()
 );
 
 // Action to set the theme
 export const CountrySetTheme = createAction(
   '[Country] Set Theme',
-  props<{ theme: 'light' | 'dark' }>()
+  props<{ uiTheme: 'light' | 'dark' }>()
 );
