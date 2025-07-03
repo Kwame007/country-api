@@ -1,8 +1,7 @@
-.countries-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 75px;
-  padding-bottom: 48px;
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .country-card {
@@ -10,7 +9,10 @@
   border-radius: 5px;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   overflow: hidden;
 }
 

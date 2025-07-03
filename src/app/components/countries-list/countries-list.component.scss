@@ -4,6 +4,15 @@
   margin: 0 auto;
 }
 
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  justify-items: stretch;
+  align-items: stretch;
+  padding-bottom: 65px;
+}
+
 .search-filter-container {
   display: flex;
   justify-content: space-between;
