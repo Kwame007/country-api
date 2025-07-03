@@ -37,7 +37,7 @@
     {{ errorMessage }}
   </div>
 
-  <div class="countries-grid">
+  <div class="countries-grid"> 
     @if (countries$ | async; as countries) {
       @for (country of countries; track country.cca3) {
         <app-country-card
