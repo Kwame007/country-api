@@ -89,45 +89,56 @@
 }
 
 @media (max-width: 1200px) {
-  .country-list-container,
-  .country-details-container {
+  .country-list-container {
     padding-left: 40px;
     padding-right: 40px;
   }
+  .countries-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
 
-  .country-content {
-    gap: 80px;
+@media (max-width: 900px) {
+  .countries-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
 @media (max-width: 768px) {
-  .country-list-container,
-  .country-details-container {
+  .country-list-container {
     padding-left: 16px;
     padding-right: 16px;
   }
-
   .search-filter-container {
     flex-direction: column;
     align-items: center;
     gap: 40px;
     margin-bottom: 32px;
   }
-
   .search-wrapper {
     max-width: none;
   }
-
   .search-input {
-    padding: 16px 93px;
+    padding: 16px 32px 16px 74px;
     font-size: 14px;
   }
-
   .filter-select {
-    padding: 16px 20px;
+    padding: 16px 24px;
     width: 100%;
-    max-width: 200px;
-    width: 50%;
+    max-width: 320px;
     align-self: flex-start;
+  }
+  :host ::ng-deep .countries-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    justify-items: center;
+    padding-bottom: 65px;
+  }
+  .country-card {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 8px;
   }
 }

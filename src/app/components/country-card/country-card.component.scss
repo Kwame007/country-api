@@ -55,15 +55,8 @@
 }
 
 @media (max-width: 768px) {
-  .countries-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    justify-items: center;
-    padding-bottom: 65px;
-  }
-
   .country-card {
-    width: 80%;
+    width: 100%;
     max-width: 380px;
     border-radius: 8px;
   }
