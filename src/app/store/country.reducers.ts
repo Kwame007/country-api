@@ -7,60 +7,60 @@ export const countryReducer = createReducer(
 
   on(CountryActions.CountryLoadAll, (state) => ({
     ...state,
-    loading: true,
-    error: null,
+    isLoading: true,
+    errorMessage: null,
   })),
 
-  on(CountryActions.CountryLoadAllSuccess, (state, { countries }) => ({
+  on(CountryActions.CountryLoadAllSuccess, (state, { countriesList }) => ({
     ...state,
-    countries,
-    loading: false,
-    error: null,
+    countriesList,
+    isLoading: false,
+    errorMessage: null,
   })),
 
   on(CountryActions.CountryLoadAllFailure, (state, { error }) => ({
     ...state,
-    loading: false,
-    error,
+    isLoading: false,
+    errorMessage: error,
   })),
 
   on(CountryActions.CountryLoadByCode, (state, { code }) => ({
     ...state,
-    loading: true,
-    error: null,
+    isLoading: true,
+    errorMessage: null,
   })),
 
-  on(CountryActions.CountryLoadByCodeSuccess, (state, { country }) => ({
+  on(CountryActions.CountryLoadByCodeSuccess, (state, { activeCountry }) => ({
     ...state,
-    selectedCountry: country,
-    loading: false,
-    error: null,
+    activeCountry,
+    isLoading: false,
+    errorMessage: null,
   })),
 
   on(CountryActions.CountryLoadByCodeFailure, (state, { error }) => ({
     ...state,
-    loading: false,
-    error,
+    isLoading: false,
+    errorMessage: error,
   })),
 
-  on(CountryActions.CountrySetSearchQuery, (state, { query }) => ({
+  on(CountryActions.CountrySetSearchQuery, (state, { countrySearchQuery }) => ({
     ...state,
-    searchQuery: query,
+    countrySearchQuery,
   })),
 
-  on(CountryActions.CountrySetFilterRegion, (state, { region }) => ({
+  on(CountryActions.CountrySetFilterRegion, (state, { selectedRegion }) => ({
     ...state,
-    filterRegion: region,
+    selectedRegion,
   })),
 
-  on(CountryActions.CountrySetTheme, (state, { theme }) => ({
+  on(CountryActions.CountrySetTheme, (state, { uiTheme }) => ({
     ...state,
-    theme,
+    uiTheme,
   })),
 
   on(CountryActions.CountrySelect, (state, { code }) => ({
     ...state,
-    selectedCountry:
+    activeCountry:
       state.countriesList.find((country) => country.cca3 === code) || null,
   }))
 );

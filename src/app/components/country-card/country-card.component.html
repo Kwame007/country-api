@@ -1,11 +1,23 @@
-<div class="country-card">
-  <img class="country-flag" [src]="country.flags.png" [alt]="country.name.common + ' flag'" />
+<div class="country-card" (click)="selectCountry(country)">
+  <div class="flag-container">
+    <img
+      [src]="country.flags.png"
+      [alt]="country.flags.alt"
+      class="flag-image"
+    />
+  </div>
   <div class="country-info">
-    <h2 class="country-name">{{ country.name.common }}</h2>
+    <h3 class="country-name">{{ country.name.common }}</h3>
     <div class="country-details">
-      <div><strong>Population:</strong> {{ country['population'] }}</div>
-      <div><strong>Region:</strong> {{ country['region'] }}</div>
-      <div><strong>Capital:</strong> {{ country['capital']?.[0] || 'N/A' }}</div>
+      <p>
+        <span class="label">Population:</span>
+        {{ country.population | population }}
+      </p>
+      <p><span class="label">Region:</span> {{ country.region }}</p>
+      <p>
+        <span class="label">Capital:</span>
+        {{ country.capital.join(', ') || 'N/A' }}
+      </p>
     </div>
   </div>
 </div>

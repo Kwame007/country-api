@@ -1,13 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CountryService } from './services/country.service';
 import { CommonModule } from '@angular/common';
-import { Country } from './models/countries.models';
-import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, CountriesListComponent],
+  imports: [RouterOutlet, CommonModule, ThemeToggleComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
