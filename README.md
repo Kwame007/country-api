@@ -1,59 +1,100 @@
 # RestCountries
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+RestCountries is an Angular application that allows users to browse, search, and view detailed information about countries using the REST Countries API. The app features a modern UI, dark/light theme switching, and leverages NgRx for state management.
 
-## Development server
+---
 
-To start a local development server, run:
+## Project Description
 
-```bash
-ng serve
-```
+This project provides an interactive interface to explore countries worldwide. Users can search for countries, filter by region, view detailed information, and switch between dark and light themes. The application is built with Angular and uses NgRx for robust state management.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Setup & Run Instructions
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start the development server:**
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   ng serve
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   Open your browser at [http://localhost:4200](http://localhost:4200).
 
-```bash
-ng generate --help
-```
+3. **Build for production:**
 
-## Building
+   ```bash
+   ng build
+   ```
 
-To build the project run:
+4. **Run unit tests:**
+   ```bash
+   ng test
+   ```
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Application Features
 
-## Running unit tests
+- **Search & Filter:** Search for countries by name and filter by region.
+- **Country Details:** View detailed information about each country, including population, region, capital, currencies, and bordering countries.
+- **Theme Switch:** Toggle between dark and light modes.
+- **Responsive Design:** Works well on both desktop and mobile devices.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## Component Structure
 
-## Running end-to-end tests
+- **CountriesListComponent:** Displays a list of countries with search and filter options.
+- **CountryCardComponent:** Shows a summary card for each country.
+- **CountryDetailsComponent:** Presents detailed information for a selected country.
+- **ThemeToggleComponent:** Allows users to switch between dark and light themes.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Routing Overview
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- `/` - Home page with the list of countries.
+- `/country/:code` - Details page for a specific country.
+
+Routes are configured in `src/app/app.routes.ts`.
+
+---
+
+## API Consumption
+
+The application uses the [REST Countries API](https://restcountries.com/) to fetch country data. All API interactions are handled via Angular services and NgRx effects.
+
+---
+
+## NgRx Store Implementation
+
+- **State:** The country state is managed in `src/app/store/country.state.ts`.
+- **Actions:** Defined in `src/app/store/country.actions.ts`.
+- **Reducers:** Handle state changes in `src/app/store/country.reducers.ts`.
+- **Effects:** Manage side effects (API calls) in `src/app/store/country.effects.ts`.
+- **Selectors:** Used to select and derive data from the store in `src/app/store/country.selectors.ts`.
+
+---
+
+## Theme Switching Implementation
+
+The theme toggle is implemented using the `ThemeToggleComponent` and managed in the global state with NgRx. The selected theme is applied across the application using SCSS variables and Angular bindings.
+
+---
+
+## Git Workflow
+
+- Use feature branches for new features or bug fixes.
+- Open pull requests for code review before merging to `main`.
+- Keep commit messages clear and descriptive.
+
+---
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular CLI Documentation](https://angular.dev/tools/cli)
+- [REST Countries API](https://restcountries.com/)
