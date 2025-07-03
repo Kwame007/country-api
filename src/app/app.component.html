@@ -1,1 +1,43 @@
-<p>It works</p>
+<!-- All Countries -->
+<!-- <div *ngIf="loadingCountries">Loading all countries...</div>
+<div *ngIf="errorCountries" class="error">{{ errorCountries }}</div>
+<ul *ngIf="!loadingCountries && !errorCountries">
+  <li *ngFor="let country of countries">
+    <img [src]="country.flags.png" [alt]="country.name.common" width="32" />
+    {{ country.name.common }}
+  </li>
+</ul> -->
+
+<!-- Single Country (co) -->
+ @if(loadingCountry){
+  <div>Loading country (co)...</div>
+ }@else{
+  @for(c of country; track c.cca2){
+    <div>{{c.name.common}}</div>
+  }
+ }
+<!-- <div *ngIf="loadingCountry">Loading country (co)...</div>
+<div *ngIf="errorCountry" class="error">{{ errorCountry }}</div>
+<ul *ngIf="!loadingCountry && !errorCountry">
+  <li *ngFor="let c of country">
+    <img [src]="c.flags.png" [alt]="c.name.common" width="32" />
+    {{ c.name.common }}
+  </li>
+</ul> -->
+
+<!-- Country List (co, gh, ca, us) -->
+<!-- <div *ngIf="loadingCountryList">Loading country list...</div>
+<div *ngIf="errorCountryList" class="error">{{ errorCountryList }}</div>
+<ul *ngIf="!loadingCountryList && !errorCountryList">
+  <li *ngFor="let c of countryList">
+    <img [src]="c.flags.png" [alt]="c.name.common" width="32" />
+    {{ c.name.common }}
+  </li>
+</ul> -->
+
+<main class="main-container">
+  <h1 class="app-title">Where in the world?</h1>
+  <div *ngIf="loadingCountries" class="loading">Loading countries...</div>
+  <div *ngIf="errorCountries" class="error">{{ errorCountries }}</div>
+  <app-countries-list *ngIf="!loadingCountries && !errorCountries" [countries]="countries"></app-countries-list>
+</main>
