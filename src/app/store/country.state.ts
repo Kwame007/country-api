@@ -1,5 +1,4 @@
-import { Country } from "../models/countries.models";
-
+import { Country } from '../models/countries.models';
 
 export interface CountryState {
   countriesList: Country[];

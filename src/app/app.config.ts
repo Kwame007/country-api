@@ -17,7 +17,6 @@ import { provideEffects } from '@ngrx/effects';
 import { countryReducer } from './store/country.reducers';
 import { CountryEffects } from './store/country.effects';
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
