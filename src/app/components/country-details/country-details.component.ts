@@ -50,8 +50,6 @@ export class CountryDetailsComponent implements OnInit {
           this.store.dispatch(CountryLoadByCode({ code }));
         }
       });
-
-    // Get border countries
     this.country$.subscribe((country) => {
       if (country?.borders?.length) {
         this.countryService
